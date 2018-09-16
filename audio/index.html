@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script>
+			function toggleSound(){
+				var music=document.getElementById("music_bg");
+				var toggle=document.getElementById("button_music");
+				if(music.paused){
+					music.paly();
+					toggle.innerHTML="暂停";
+				}else{
+					music.pause();
+					toggle.innerHTML="播放";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		
+		<audio src="seesaw.mp3" controls="controls" id="music_bg">
+			
+		</audio>
+		
+	</body>
+</html>

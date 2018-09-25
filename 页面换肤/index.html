@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>页面换肤</title>
+		<style>
+			#border{
+				width: 650px;
+				height: 300px;
+				margin: auto;
+			}
+			legend{
+				color:red;
+				font-weight:bold;
+				font-size:40px;
+			}
+			#solid{
+				border-style:solid;
+				width: 630px;
+				height: 50px;
+				margin: auto;
+				font-size: 4px;
+			}
+			#one{
+				width: 25px;
+				height: 25px;
+				background-color: lightslategrey;
+				margin-top: 10px;
+				margin-left: 10px;
+				float: left;
+			}
+			
+			#two{
+				width: 25px;
+				height: 25px;
+				background-color: mediumpurple;
+				float: left;
+				margin-top: 10px;
+				margin-left: 10px;
+			}
+			#three{
+				width: 25px;
+				height: 25px;
+				background-color: red;
+				float: left;
+				margin-top: 10px;
+				margin-left: 10px;
+			}
+			#four{
+				width: 25px;
+				height: 25px;
+				background-color: lightskyblue;
+				float: left;
+				margin-top: 10px;
+				margin-left: 10px;
+			}
+			#five{
+				width: 25px;
+				height: 25px;
+				background-color: orange;
+				float: left;
+				margin-top: 10px;
+				margin-left: 10px;
+			}
+			#six{
+				width: 25px;
+				height: 25px;
+				background-color: lightgreen;
+				float: left;
+				margin-top: 10px;
+				margin-left: 10px;
+			}
+			p{
+				margin:30px;
+				font-size:18px;
+				background-color: orange;
+			}
+		</style>
+		<script>
+		window.onload = function(){
+			for(var i=0; i<7; i++){
+				localStorage.setItem("sticky_"+i,"test--"+i);
+			}
+			
+			document.getElementById("all").onclick = function(){
+				for(var i=0; i<localStorage.length; i++){
+					var key = localStorage.key(i);
+					var data = localStorage.getItem(key);
+					document.getElementById("data").innerHTML += data+"<br/>";
+				}
+			}
+		var key = document.getElementById('key');
+        var value = document.getElementById('value');
+        var add = document.getElementById('all');
+        add.onclick = function() {
+            localStorage.setItem(key.value, value.value);
+		</script>
+	</head>
+	<body>
+		<fieldset id="border">
+			<legend>页面换肤</legend>
+			<fieldset id="solid">
+				<div id="all">
+				<input type="button" value="" id="one" />
+				<input type="button" value="" id="two" />
+				<input type="button" value="" id="three" />
+				<input type="button" value="" id="four" />
+				<input type="button" value="" id="five" />
+				<input type="button" value="" id="six" />
+				</div>
+			</fieldset>
+			<p>LocalStorage将数据保存在客户端本地的硬件设备中，即使浏览器被关闭了，该数据仍然存在，下次打开浏览器访问网站时仍然可以继续使用。</p>
+		</fieldset>
+	</body>
+</html>

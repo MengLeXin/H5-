@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>钟表</title>
+		<style>
+			#canvas{
+				border:1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="400" height="400"></canvas>
+		<script>
+			//创建绘图容器
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext("2d");
+			var deg=Math.PI/180;
+			//画圆
+			context.beginPath();
+			context.lineWidth=6;
+			context.strokeStyle="lawngreen";
+			
+			context.arc(200,200,170,0,2*Math.PI);
+			context.closePath();
+			context.stroke();
+			//绘制时钟分
+			context.translate(200,200);
+			context.fillStyle="black";
+			for(var i=0;i<60;i++){
+				context.beginPath();
+				context.fillRect(0,140,3,10);
+				context.rotate(6/180*Math.PI);
+				context.closePath();
+			}
+			//绘制时钟时
+			context.fillStyle="red";
+			for(var i=0;i<12;i++){
+				context.beginPath();
+				context.fillRect(0,140,5,15);
+				context.rotate(30/180*Math.PI);
+				context.closePath();
+			}
+			//显示数字
+			context.rotate(30/180*Math.PI);
+			for(var i=1;i<13;i++){
+				context.beginPath();
+				context.textAlign='center';
+				context.fillStyle="gray";
+				context.font="normal 15px arial";
+				context.fillText(i,0,-120);
+				context.rotate(30/180*Math.PI);
+				//将每一个数字摆正
+				//ctx.translate(Math.sin(i*30/180*Math.PI)*105,
+				//-Math.cos(i*30/180*Math.PI)*105);
+				context.closePath();
+			}
+			//创建中心点
+			context.beginPath();
+ 			context.arc(0,0,5,0,2*Math.PI);
+			context.fill();
+			context.closePath();
+			//
+			var nowdate = new Date(),
+     			hour = nowdate.getHours() % 12,
+     			minu = nowdate.getMinutes(),
+     			second = nowdate.getSeconds();
+ 			var ms = nowdate.getMilliseconds(); //毫秒
+ 			 //秒针
+			 context.beginPath();
+			 context.save();
+			 context.lineWidth = 3;
+			 context.strokeStyle = 'red';
+			 //context.rotate(6*second*deg);
+			 context.rotate((ms / 1000 + second) * 6 * deg);
+			 context.moveTo(0, 10);
+			 context.lineTo(0, -130);
+			 context.stroke();
+			 context.restore();
+			 context.closePath();
+			 context.beginPath();
+			 context.save();
+			 context
+			 //分针
+			 context.beginPath();
+			 context.save();
+			 context.lineWidth = 4;
+			 context.strokeStyle = 'pink';
+			 //context.rotate((second/60+minu)*6*deg);
+			 context.rotate((ms / 1000 / 60 + second / 60 + minu) * 6 * deg);
+			 context.moveTo(0, 10);
+			 context.lineTo(0, -115);
+			 context.stroke();
+			 context.restore();
+			 context.closePath();
+			//创建时针
+			context.beginPath();
+			context.save();
+			context.lineWidth = 5;
+			context.strokeStyle = 'purple';
+			 //context.rotate((second/3600+minu/60+hour)*30*deg);
+			 context.rotate((ms / 1000 / 60 / 60 + second / 60 / 60 + minu / 60 + hour) * 30 * deg);
+			 context.moveTo(0, 5);
+			 context.lineTo(0, -100);
+			 context.stroke();
+			 context.restore();
+			context.closePath();
+		</script>
+	</body>
+</html>
